@@ -3,7 +3,7 @@ const path = require("path");
 const { parse } = require("csv-parse");
 
 const habitablePlanets = [];
-console.log(habitablePlanets);
+// console.log(habitablePlanets);
 
 function isHabitablePlanet(planet) {
   return (
@@ -40,8 +40,12 @@ async function loadPlanetsData() {
       });
   });
 }
+
+function getAllPlanets() {
+  return habitablePlanets;
+}
 //henne
 module.exports = {
   loadPlanetsData,
-  planets: habitablePlanets,
+  getAllPlanets,
 };

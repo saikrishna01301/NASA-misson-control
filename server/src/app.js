@@ -9,11 +9,11 @@ const app = express();
 
 //I'm using client production build in server so no need of CORS
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 //logger middleware
 app.use(morgan("combined"));
@@ -21,12 +21,12 @@ app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use(planetsRouter);
-app.use(launchesRouter);
+app.use("/planets", planetsRouter);
+app.use("/launches", launchesRouter);
 
 // telling the server to open index.htm as landing page
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
-// });
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
 
 module.exports = app;
